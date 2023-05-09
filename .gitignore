@@ -22,3 +22,6 @@ go.work
 
 # PyCharm
 .idea
+
+# Configuration
+config.yml
