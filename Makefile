@@ -1,9 +1,25 @@
+.PHONY: all clean build run test
 
-install-deps:
-	echo "installing the dependencies..."
+# Set the name of your Go binary
+BINARY_NAME := todo-app
+
+# Set the Go compiler command
+GO := go
+
+all: clean build run
+
+clean:
+	@echo "Cleaning..."
+	@rm -f $(BINARY_NAME)
+
+build:
+	@echo "Building..."
+	@$(GO) build -o $(BINARY_NAME) ./cmd/todo
+
+run:
+	@echo "Running..."
+	@./$(BINARY_NAME)
 
 test:
-	echo "running test cases..."
-
-coverage:
-	echo "running test cases with coverage report..."
+	@echo "Running tests..."
+	@$(GO) test ./...
