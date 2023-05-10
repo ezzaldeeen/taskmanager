@@ -2,6 +2,7 @@ package main
 
 import (
 	"TodoList/config"
+	"TodoList/controllers/health"
 	"TodoList/controllers/task"
 	"TodoList/middlewares"
 	"fmt"
@@ -17,7 +18,8 @@ func main() {
 	// instantiate route group
 	api := e.Group("/api")
 	// register route groups
+	health.RegisterRouteGrp(api)
 	task.RegisterRouteGrp(api)
-
+	// starting service based on the given configuration
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", cfg.Service.Port)))
 }
