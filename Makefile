@@ -3,9 +3,6 @@
 # Set the name of your Go binary
 BINARY_NAME := todo-app
 
-# Set the Go compiler command
-GO := go
-
 all: clean build run
 
 clean:
@@ -14,7 +11,7 @@ clean:
 
 build:
 	@echo "Building..."
-	@$(GO) build -o $(BINARY_NAME) ./cmd/todo
+	@go build -o $(BINARY_NAME) .
 
 run:
 	@echo "Running..."
@@ -22,4 +19,9 @@ run:
 
 test:
 	@echo "Running tests..."
-	@$(GO) test ./...
+	@go test ./...
+
+coverage:
+	@echo "Running tests with coverage..."
+	@go test -coverprofile=coverage.out ./...
+	@go tool cover -func=coverage.out
