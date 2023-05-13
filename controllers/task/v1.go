@@ -35,5 +35,19 @@ func getById(c echo.Context) error {
 
 // create is an HTTP handler function that handles the creation of a new task.
 func create(c echo.Context) error {
-	return c.JSON(http.StatusNotFound, "Todo not found")
+	//dto := task.DTO{}
+	//err := json.NewDecoder(c.Request().Body).Decode(&dto)
+	//if err != nil {
+	//	return c.JSON(http.StatusBadRequest, err)
+	//}
+	//
+	//task3.NewRepo()
+	//svc := task2.NewService()
+	//err = svc.CreateTask(dto.ToIDO())
+	//if err != nil {
+	//	return c.JSON(http.StatusBadRequest, err)
+	//}
+	//return c.JSON(http.StatusCreated, nil)
+
+	return nil
 }
