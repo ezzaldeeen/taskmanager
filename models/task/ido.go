@@ -16,6 +16,7 @@ type IDO struct {
 	Status      Status `json:"status"`
 	CreatedAt   int64  `json:"created_at"`
 	UpdatedAt   int64  `json:"updated_at"`
+	// todo: add reference for the author
 }
 
 // ToDTO converts an IDO (Intermediate Data Object) to

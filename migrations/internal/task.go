@@ -1,5 +1,7 @@
 package internal
 
+import "TodoList/models/task"
+
 // Task represents a task table.
 // ID is the unique identifier for the task.
 // Title is the title of the task.
@@ -11,7 +13,8 @@ type Task struct {
 	ID          string `gorm:"primaryKey"`
 	Title       string
 	Description string
-	Status      string
+	Status      task.Status
 	CreatedAt   int64
 	UpdatedAt   int64
+	// todo: add reference for the author
 }
