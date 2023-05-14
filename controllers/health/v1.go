@@ -3,14 +3,16 @@ package health
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"taskmanager/database"
 )
 
+// Controller represents a controller responsible
+// for handling requests related to health.
 type Controller struct {
 	g *echo.Group
 }
 
-func NewController(g *echo.Group, driver *database.DBDriver) *Controller {
+// NewController creates a new instance of the Controller.
+func NewController(g *echo.Group) *Controller {
 	return &Controller{
 		g: g,
 	}

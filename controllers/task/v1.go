@@ -33,7 +33,7 @@ func NewController(g *echo.Group, driver *database.DBDriver) *Controller {
 // the relevant HTTP handlers.
 // The following routes are registered:
 // - GET: Retrieve all tasks
-// - GET: Retrieve a task by its ID
+// - GET: Retrieve a task by its ID todo (Not implemented)
 // - POST: Create a new task
 // - PUT: Update a task by its ID todo (Not implemented)
 // - DELETE: Delete a task by its ID todo (Not implemented)
