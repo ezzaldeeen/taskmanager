@@ -11,11 +11,14 @@ import (
 	"taskmanager/utils"
 )
 
+// Controller represents a controller responsible
+// for handling requests related to tasks.
 type Controller struct {
 	g       *echo.Group
 	service *tasksvc.Service
 }
 
+// NewController creates a new instance of the Controller.
 func NewController(g *echo.Group, driver *database.DBDriver) *Controller {
 	repo := taskrepo.NewRepo(driver)
 	svc := tasksvc.NewService(repo)
