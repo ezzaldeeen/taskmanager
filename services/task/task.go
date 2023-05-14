@@ -5,6 +5,7 @@ import (
 )
 
 type Repo interface {
+	// todo: rewrite this
 	Create(ido *task.IDO) error
 	GetAll() ([]task.IDO, error)
 }
