@@ -25,7 +25,7 @@ func main() {
 	// instantiate route group
 	api := e.Group("/api")
 	// register route groups
-	health.RegisterRouteGrp(api)
+	health.NewController(api, driver).Register()
 	task.NewController(api, driver).Register()
 	// starting service based on the given configuration
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", cfg.Service.Port)))
