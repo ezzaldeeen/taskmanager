@@ -4,6 +4,7 @@ package tasksvc
 type TaskRepo interface {
 	TaskCreatorRepo
 	TasksGetterRepo
+	TaskGetterByIDRepo
 }
 
 // Service represents a service responsible

@@ -24,6 +24,7 @@ type Config struct {
 		User     string `yaml:"user" env:"USER" env-default:"user"`
 		Password string `yaml:"password" env:"PASSWORD"`
 	} `yaml:"database"`
+	Environment string
 }
 
 var (

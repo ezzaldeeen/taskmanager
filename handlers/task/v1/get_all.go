@@ -16,6 +16,6 @@ func (h Handler) GetAll(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusNotFound, err)
 	}
-	taskDTOs := fromIDOsToDTOs(taskIDOs)
-	return c.JSON(http.StatusCreated, taskDTOs)
+	tasksRes := convertTasksToResponseModels(taskIDOs)
+	return c.JSON(http.StatusCreated, tasksRes)
 }

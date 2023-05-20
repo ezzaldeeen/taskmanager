@@ -9,6 +9,7 @@ import (
 type TaskService interface {
 	TaskCreatorService
 	TasksGetterService
+	TaskGetterByIDService
 }
 
 // Handler represents a controller responsible
@@ -38,7 +39,7 @@ func NewHandler(g *echo.Group, service TaskService) handlers.Registrar {
 func (h Handler) Register() {
 	grp := h.g.Group("/v1/tasks")
 	grp.GET("", h.GetAll)
-	//grp.GET("/:id", h.getById)
+	grp.GET("/:id", h.GetByID)
 	grp.POST("", h.Create)
 	grp.PUT("/:id", nil)
 	grp.DELETE("/:id", nil)

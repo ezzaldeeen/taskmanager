@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"taskmanager/config"
 	"taskmanager/database"
 	"taskmanager/handlers/health"
@@ -23,8 +25,14 @@ func main() {
 		cfg.DB.Password,
 		cfg.DB.Port)
 
-	// register pre-requests middlewares
+	// Enable metrics middleware
+	p := prometheus.NewPrometheus("echo", nil)
+	p.Use(e)
+	// Register Middlewares
 	e.Pre(middlewares.TrimTrailingSlashes)
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "method=${method}, uri=${uri}, status=${status}\n",
+	}))
 
 	// Instantiate route group
 	api := e.Group("/api")

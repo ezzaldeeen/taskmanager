@@ -1,10 +1,10 @@
 package main
 
 import (
-	"TodoList/config"
-	"TodoList/database"
-	"TodoList/migrations/internal"
 	"log"
+	"taskmanager/config"
+	"taskmanager/database"
+	"taskmanager/migrations/internal"
 )
 
 func main() {
