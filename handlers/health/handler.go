@@ -3,18 +3,18 @@ package health
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"taskmanager/controllers"
+	"taskmanager/handlers"
 )
 
-// Controller represents a controller responsible
+// Handler represents a controller responsible
 // for handling requests related to health.
-type Controller struct {
+type Handler struct {
 	g *echo.Group
 }
 
-// NewController creates a new instance of the Controller.
-func NewController(g *echo.Group) controllers.Registrar {
-	return &Controller{
+// NewHandler creates a new instance of the Handler.
+func NewHandler(g *echo.Group) handlers.Registrar {
+	return &Handler{
 		g: g,
 	}
 }
@@ -24,14 +24,14 @@ func NewController(g *echo.Group) controllers.Registrar {
 // the relevant HTTP handlers.
 // The following routes are registered:
 // - GET: Retrieve health of the service
-func (c Controller) Register() {
-	grp := c.g.Group("/v1/health")
-	grp.GET("", c.get)
+func (h Handler) Register() {
+	grp := h.g.Group("/health")
+	grp.GET("", h.get)
 }
 
-// getAll is an HTTP handler function that the health of the service.
-func (c Controller) get(ec echo.Context) error {
+// get is an HTTP handler function that the health of the service.
+func (h Handler) get(c echo.Context) error {
 	// todo: implement health checking
 	// todo: check DB, Redis connection status
-	return ec.JSON(http.StatusOK, "OK")
+	return c.JSON(http.StatusOK, "OK")
 }
