@@ -1,5 +1,7 @@
 package task
 
+import "taskmanager/controllers/rest/v1"
+
 type Status int
 
 const (
@@ -8,7 +10,7 @@ const (
 	Deleted   Status = -1
 )
 
-// IDO represents an intermediate Data Object for a task.
+// IDO represents an intermediate Data Object for a rest.
 type IDO struct {
 	Id          string `json:"id"`
 	Title       string `json:"title"`
@@ -23,8 +25,8 @@ type IDO struct {
 // a DTO (Data Transfer Object). It creates and returns a new instance of DTO
 // with the Title and Description fields
 // The remaining fields in the DTO will be set to their default values.
-func (t *IDO) ToDTO() *DTO {
-	return &DTO{
+func (t *IDO) ToDTO() *v1.DTO {
+	return &v1.DTO{
 		Title:       t.Title,
 		Description: t.Description,
 	}

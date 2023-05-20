@@ -3,6 +3,7 @@ package health
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
+	"taskmanager/controllers"
 )
 
 // Controller represents a controller responsible
@@ -12,7 +13,7 @@ type Controller struct {
 }
 
 // NewController creates a new instance of the Controller.
-func NewController(g *echo.Group) *Controller {
+func NewController(g *echo.Group) controllers.Registrar {
 	return &Controller{
 		g: g,
 	}
