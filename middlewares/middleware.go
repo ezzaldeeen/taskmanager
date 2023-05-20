@@ -10,6 +10,7 @@ import (
 // trailing slashes from the request URL. It redirects the request to
 // the cleaned URL if there is a trailing slash.
 // Returns nil if the request is redirected, or executes the next handler in the chain.
+// todo: usually this would be on the LB
 func TrimTrailingSlashes(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		r := c.Request()

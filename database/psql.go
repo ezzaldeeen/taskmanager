@@ -24,14 +24,18 @@ func NewDBDriver(user, name, pwd, port string) *DBDriver {
 	}
 }
 
+// todo use sync.Once
 func (d DBDriver) GetConnection() (*gorm.DB, error) {
 	// setting database configuration
 	dns := fmt.Sprintf(
 		"user=%s password=%s dbname=%s port=%s",
 		d.user, d.pwd, d.name, d.port)
 	cfg := postgres.Config{
+		DriverName:           "",
 		DSN:                  dns,
-		PreferSimpleProtocol: true,
+		PreferSimpleProtocol: true,  // todo: read about
+		WithoutReturning:     false, // todo: read about
+		Conn:                 nil,   // todo: read about connection pool, read about TCP, TCP overhead, read about db connections how it works
 	}
 	// getting new db connection
 	db, err := gorm.Open(postgres.New(cfg))

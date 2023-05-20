@@ -8,20 +8,20 @@ import (
 )
 
 type TaskCreatorService interface {
-	Create(ido *models.IDO) error
+	Create(ido models.TaskIDO) error
 }
 
 // Create is an HTTP handler function that handles the creation of a new rest.
-func (c Controller) Create(ec echo.Context) error {
-	var payload Task
-	// todo: add validation
-	err := json.NewDecoder(ec.Request().Body).Decode(&payload)
+func (h Handler) Create(ec echo.Context) error {
+	var taskDTO TaskDTO
+	err := json.NewDecoder(ec.Request().Body).Decode(&taskDTO)
 	if err != nil {
 		return ec.JSON(http.StatusBadRequest, err)
 	}
-	err = c.service.Create(payload.ToIDO())
+	taskIDO := fromDTOtoIDO(taskDTO)
+	err = h.service.Create(taskIDO)
 	if err != nil {
 		return ec.JSON(http.StatusBadRequest, err)
 	}
-	return ec.JSON(http.StatusCreated, payload)
+	return ec.JSON(http.StatusCreated, taskDTO)
 }

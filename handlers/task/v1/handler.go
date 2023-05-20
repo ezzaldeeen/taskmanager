@@ -37,9 +37,9 @@ func NewHandler(g *echo.Group, service TaskService) handlers.Registrar {
 // - DELETE: Delete a rest by its ID todo (Not implemented)
 func (h Handler) Register() {
 	grp := h.g.Group("/v1/tasks")
-	//grp.GET("", c.getAll)
-	//grp.GET("/:id", c.getById)
-	//grp.POST("", c.create)
+	grp.GET("", h.GetAll)
+	//grp.GET("/:id", h.getById)
+	grp.POST("", h.Create)
 	grp.PUT("/:id", nil)
 	grp.DELETE("/:id", nil)
 }

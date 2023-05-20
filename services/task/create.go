@@ -6,12 +6,12 @@ import (
 
 // TaskCreatorRepo defines the interface for a task creator repository.
 type TaskCreatorRepo interface {
-	Create(ido *models.IDO) error
+	Create(task models.TaskIDO) error
 }
 
 // Create creates a new task based on the provided IDO.
-func (s Service) Create(ido *models.IDO) error {
-	err := s.repo.Create(ido)
+func (s Service) Create(task models.TaskIDO) error {
+	err := s.repo.Create(task)
 	if err != nil {
 		return err
 	}
