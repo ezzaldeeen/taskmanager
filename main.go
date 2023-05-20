@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"taskmanager/config"
-	v1 "taskmanager/controllers/rest/v1"
-	taskv1 "taskmanager/controllers/task/v1"
 	"taskmanager/database"
+	"taskmanager/handlers/health"
+	"taskmanager/handlers/task/v1"
 	"taskmanager/middlewares"
-	taskrepo "taskmanager/repositories/task"
-	tasksvc "taskmanager/services/task"
+	"taskmanager/repositories/task"
+	"taskmanager/services/task"
 )
 
 func main() {
@@ -30,14 +30,14 @@ func main() {
 	api := e.Group("/api")
 
 	// Initialize Repositories
-	taskRepo := taskrepo.NewRepo(driver)
+	taskRepo := taskrepo.NewRepository(driver)
 
 	// Initialize Services
 	taskSvc := tasksvc.NewService(taskRepo)
 
 	// API group registration
-	taskv1.NewController(api, taskSvc).Register()
-	v1.NewController(api, driver).Register()
+	health.NewHandler(api).Register()
+	taskv1.NewHandler(api, taskSvc).Register()
 
 	// Starting service based on the given configuration
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", cfg.Service.Port)))
