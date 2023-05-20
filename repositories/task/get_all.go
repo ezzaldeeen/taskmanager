@@ -4,6 +4,7 @@ import (
 	"taskmanager/models"
 )
 
+// GetAll ..
 func (r Repository) GetAll() ([]models.TaskIDO, error) {
 	var tasks []models.TaskIDO
 	conn, err := r.handlerFn()

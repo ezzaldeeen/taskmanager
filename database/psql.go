@@ -33,9 +33,9 @@ func (d DBDriver) GetConnection() (*gorm.DB, error) {
 	cfg := postgres.Config{
 		DriverName:           "",
 		DSN:                  dns,
-		PreferSimpleProtocol: true,  // todo: read about
-		WithoutReturning:     false, // todo: read about
-		Conn:                 nil,   // todo: read about connection pool, read about TCP, TCP overhead, read about db connections how it works
+		PreferSimpleProtocol: true,
+		WithoutReturning:     false,
+		Conn:                 nil,
 	}
 	// getting new db connection
 	db, err := gorm.Open(postgres.New(cfg))

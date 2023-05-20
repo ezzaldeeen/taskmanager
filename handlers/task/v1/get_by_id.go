@@ -18,5 +18,5 @@ func (h Handler) GetByID(c echo.Context) error {
 		return c.JSON(http.StatusNotFound, "not found")
 	}
 	taskRes := convertToResponseModel(taskIDO)
-	return c.JSON(http.StatusCreated, taskRes)
+	return c.JSON(http.StatusOK, taskRes)
 }

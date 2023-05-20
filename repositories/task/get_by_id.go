@@ -4,6 +4,7 @@ import (
 	"taskmanager/models"
 )
 
+// GetByID ...
 func (r Repository) GetByID(id string) (models.TaskIDO, error) {
 	var task models.TaskIDO
 	conn, err := r.handlerFn()

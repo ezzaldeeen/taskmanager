@@ -14,8 +14,8 @@ type TasksGetterService interface {
 func (h Handler) GetAll(c echo.Context) error {
 	taskIDOs, err := h.service.GetAll()
 	if err != nil {
-		return c.JSON(http.StatusNotFound, err)
+		return c.JSON(http.StatusInternalServerError, err)
 	}
 	tasksRes := convertTasksToResponseModels(taskIDOs)
-	return c.JSON(http.StatusCreated, tasksRes)
+	return c.JSON(http.StatusOK, tasksRes)
 }
