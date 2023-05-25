@@ -25,6 +25,11 @@ type Config struct {
 		Password string `yaml:"password" env:"PASSWORD"`
 	} `yaml:"database"`
 	Environment string
+	Caching     struct {
+		Addr     string `yaml:"addr" env:"ADDR" env-default:"localhost:6379"`
+		Password string `yaml:"password" env:"PASSWORD" env-default:""`
+		DB       int    `yaml:"db" env:"DB" env-default:"0"`
+	}
 }
 
 var (
