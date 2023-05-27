@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"taskmanager/config"
 	"taskmanager/database"
 	"taskmanager/handlers/health"
@@ -19,26 +19,25 @@ func main() {
 	// Load app's configuration
 	cfg := config.Load()
 	// Setup DB driver
-	driver := database.NewDBDriver(
+	dbDriver := database.NewDBDriver(
 		cfg.DB.User,
 		cfg.DB.Name,
 		cfg.DB.Password,
 		cfg.DB.Port)
 
-	// Enable metrics middleware
-	p := prometheus.NewPrometheus("echo", nil)
-	p.Use(e)
 	// Register Middlewares
 	e.Pre(middlewares.TrimTrailingSlashes)
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
 		Format: "method=${method}, uri=${uri}, status=${status}\n",
 	}))
+	e.Use(middlewares.PrometheusMiddleware)
+	e.GET("/metrics", echo.WrapHandler(promhttp.Handler()))
 
 	// Instantiate route group
 	api := e.Group("/api")
 
 	// Initialize Repositories
-	taskRepo := taskrepo.NewRepository(driver)
+	taskRepo := taskrepo.NewRepository(dbDriver)
 
 	// Initialize Services
 	taskSvc := tasksvc.NewService(taskRepo)
