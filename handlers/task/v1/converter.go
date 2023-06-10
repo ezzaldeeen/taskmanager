@@ -34,7 +34,7 @@ func convertToTaskIDO(dto TaskRequestModel) models.TaskIDO {
 }
 
 // convertTasksToResponseModels converts DTOs (Data Transfer Object) to
-// IDOs (Intermediate Data Object) for a rest.
+// IDOs (Intermediate Data Object) for a rest
 // It creates a new DTO instances and initializes their fields
 // with the corresponding values from the IDOs.
 func convertTasksToResponseModels(idos []models.TaskIDO) []TaskResponseModel {
